@@ -1,0 +1,78 @@
+---
+import Section from './Section.astro';
+import { t, localized } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import projects from '../data/projects.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+---
+
+<Section id="projects" {lang} title={t('projects.title', lang)}>
+  <div class="grid md:grid-cols-2 gap-5">
+    {projects.map((project) => (
+      <div class="group rounded-xl border border-[var(--color-border)]
+                  bg-[var(--color-bg-secondary)]/50 hover:bg-[var(--color-bg-secondary)]
+                  hover:border-[var(--color-accent)]/20 hover:shadow-sm
+                  transition-all duration-300 flex flex-col">
+        <div class="p-6 flex-1 flex flex-col">
+          <!-- Project name -->
+          <h3 class="text-lg font-semibold text-[var(--color-text)] mb-2">
+            {project.name}
+          </h3>
+
+          <!-- Description -->
+          <p class="text-sm text-[var(--color-text-secondary)] leading-relaxed flex-1">
+            {localized(project.description, lang)}
+          </p>
+
+          <!-- Tech tags -->
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {project.tech.map((t) => (
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-medium
+                           bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]
+                           border border-[var(--color-border-light)]">
+                {t}
+              </span>
+            ))}
+          </div>
+
+          <!-- Links -->
+          {(project.links.demo || project.links.source) && (
+            <div class="flex items-center gap-3 mt-5 pt-4 border-t border-[var(--color-border)]">
+              {project.links.source && (
+                <a href={project.links.source} target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-sm font-medium
+                          text-[var(--color-text-secondary)] hover:text-[var(--color-text)]
+                          transition-colors duration-200">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                  </svg>
+                  {t('projects.source', lang)}
+                </a>
+              )}
+              {project.links.demo && (
+                <a href={project.links.demo} target="_blank" rel="noopener noreferrer"
+                   class="inline-flex items-center gap-1.5 text-sm font-medium
+                          text-[var(--color-text-secondary)] hover:text-[var(--color-text)]
+                          transition-colors duration-200">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                  {t('projects.view', lang)}
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</Section>

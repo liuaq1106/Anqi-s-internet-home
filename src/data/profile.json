@@ -1,0 +1,23 @@
+{
+  "name": "Your Name",
+  "avatar": "/avatar.jpg",
+  "role": {
+    "en": "Developer & Researcher",
+    "zh": "开发者 & 研究员"
+  },
+  "bio": {
+    "en": "Passionate about building elegant software and conducting impactful research. Focused on web technologies, machine learning, and open-source development.",
+    "zh": "热衷于构建优雅的软件和开展有影响力的研究。专注于 Web 技术、机器学习和开源开发。"
+  },
+  "social": {
+    "github": "https://github.com",
+    "email": "mailto:hello@example.com",
+    "twitter": "",
+    "linkedin": "",
+    "website": ""
+  },
+  "location": {
+    "en": "Shanghai, China",
+    "zh": "中国·上海"
+  }
+}

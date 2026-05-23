@@ -1,0 +1,55 @@
+{
+  "site.name": "个人网站",
+  "nav.home": "首页",
+  "nav.manage": "管理区块",
+  "lang.switch": "English",
+  "lang.label": "中文",
+
+  "hero.greeting": "你好，我是",
+  "hero.role": "开发者 & 研究员",
+  "hero.cta": "联系我",
+
+  "section.about": "关于",
+  "section.skills": "技能",
+  "section.projects": "项目",
+  "section.blog": "博客",
+  "section.papers": "论文",
+
+  "about.title": "关于我",
+  "about.education": "教育经历",
+  "about.experience": "工作经历",
+  "about.present": "至今",
+
+  "skills.title": "技术技能",
+  "skills.categories": "分类",
+
+  "projects.title": "项目经历",
+  "projects.view": "查看项目",
+  "projects.source": "源代码",
+
+  "blog.title": "博客",
+  "blog.all": "全部",
+  "blog.readMore": "阅读全文",
+  "blog.back": "返回博客列表",
+  "blog.filterByCategory": "分类",
+  "blog.filterByTag": "标签",
+  "blog.sortByDate": "时间",
+  "blog.sortNewest": "最新优先",
+  "blog.sortOldest": "最早优先",
+  "blog.noPosts": "没有找到文章。",
+  "blog.publishedOn": "发布于",
+
+  "papers.title": "论文发表",
+  "papers.authors": "作者",
+  "papers.venue": "期刊/会议",
+  "papers.year": "年份",
+  "papers.pdf": "PDF",
+  "papers.doi": "DOI",
+
+  "admin.title": "区块显示管理",
+  "admin.showAll": "全部显示",
+  "admin.hideAll": "全部隐藏",
+  "admin.close": "关闭",
+
+  "footer.builtWith": "使用 Astro + Tailwind CSS 构建"
+}

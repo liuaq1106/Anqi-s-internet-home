@@ -1,0 +1,66 @@
+{
+  "education": [
+    {
+      "date": "2018 - 2022",
+      "school": {
+        "en": "University of Example",
+        "zh": "示例大学"
+      },
+      "degree": {
+        "en": "B.S. in Computer Science",
+        "zh": "计算机科学 学士"
+      },
+      "description": {
+        "en": "Focused on algorithms, machine learning, and software engineering. GPA: 3.8/4.0.",
+        "zh": "主修算法、机器学习和软件工程。GPA: 3.8/4.0。"
+      }
+    },
+    {
+      "date": "2022 - 2025",
+      "school": {
+        "en": "Example Graduate University",
+        "zh": "示例研究生院"
+      },
+      "degree": {
+        "en": "M.S. in Artificial Intelligence",
+        "zh": "人工智能 硕士"
+      },
+      "description": {
+        "en": "Research on natural language processing and deep learning. Published 3 papers.",
+        "zh": "研究方向为自然语言处理与深度学习。发表论文3篇。"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "date": "2023 Summer",
+      "company": {
+        "en": "Tech Company Inc.",
+        "zh": "某科技公司"
+      },
+      "role": {
+        "en": "Software Engineer Intern",
+        "zh": "软件工程师实习生"
+      },
+      "description": {
+        "en": "Developed backend services using Go and PostgreSQL. Improved API response time by 40%.",
+        "zh": "使用 Go 和 PostgreSQL 开发后端服务，将 API 响应时间降低 40%。"
+      }
+    },
+    {
+      "date": "2024 - Present",
+      "company": {
+        "en": "Research Lab",
+        "zh": "某研究实验室"
+      },
+      "role": {
+        "en": "Research Assistant",
+        "zh": "研究助理"
+      },
+      "description": {
+        "en": "Working on large language model evaluation and alignment techniques.",
+        "zh": "从事大语言模型评估和对齐技术研究。"
+      }
+    }
+  ]
+}

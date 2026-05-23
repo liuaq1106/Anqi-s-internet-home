@@ -1,0 +1,132 @@
+---
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import type { SectionId } from '../utils/visibility';
+
+interface Props {
+  id: SectionId;
+  lang: Locale;
+  title?: string;
+}
+
+const { id, lang, title } = Astro.props;
+const sectionKey = `section.${id}` as const;
+const displayTitle = title || t(sectionKey, lang);
+---
+
+<section
+  id={`section-${id}`}
+  class="section-container mx-auto max-w-5xl px-6 py-20 relative group"
+  data-section={id}
+>
+  <div class="section-inner opacity-0 translate-y-6 transition-[opacity,transform] duration-700 ease-out">
+    <!-- Section header with title and eye toggle -->
+    <div class="flex items-center gap-3 mb-10">
+      <h2 class="text-2xl font-bold tracking-tight text-[var(--color-text)]">
+        {displayTitle}
+      </h2>
+      <button
+        class="section-toggle inline-flex items-center justify-center w-8 h-8
+               rounded-md opacity-0 group-hover:opacity-100
+               text-[var(--color-text-secondary)] hover:text-[var(--color-text)]
+               hover:bg-[var(--color-bg-secondary)]
+               transition-all duration-200"
+        data-section-id={id}
+        aria-label={lang === 'zh' ? '切换显示' : 'Toggle visibility'}
+        title={lang === 'zh' ? '显示/隐藏此区块' : 'Show/Hide this section'}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="eye-open">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             class="eye-closed hidden">
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+          <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+          <path d="m14.12 14.12a3 3 0 1 1-4.24-4.24"/>
+          <line x1="1" y1="1" x2="23" y2="23"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Content area -->
+    <div class="section-content">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-content {
+    transition: opacity 0.35s ease, max-height 0.35s ease;
+    overflow: hidden;
+  }
+  .section-content.hidden {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .section-inner.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  import { getVisibilityMap, toggleSection } from '../utils/visibility';
+
+  const section = document.querySelector('[data-section="{id}"]') as HTMLElement | null;
+  if (!section) throw new Error(`Section not found: {id}`);
+
+  const inner = section.querySelector('.section-inner') as HTMLElement;
+  const content = section.querySelector('.section-content') as HTMLElement;
+  const toggleBtn = section.querySelector('.section-toggle') as HTMLButtonElement;
+  const eyeOpen = section.querySelector('.eye-open') as HTMLElement;
+  const eyeClosed = section.querySelector('.eye-closed') as HTMLElement;
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          inner.classList.add('visible');
+          observer.unobserve(inner);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  observer.observe(inner);
+
+  function updateUI(visible: boolean) {
+    if (visible) {
+      content.classList.remove('hidden');
+      eyeOpen?.classList.remove('hidden');
+      eyeClosed?.classList.add('hidden');
+    } else {
+      content.classList.add('hidden');
+      eyeOpen?.classList.add('hidden');
+      eyeClosed?.classList.remove('hidden');
+    }
+  }
+
+  const visible = getVisibilityMap()['{id}'];
+  updateUI(visible);
+
+  toggleBtn?.addEventListener('click', () => {
+    const nowVisible = toggleSection('{id}');
+    updateUI(nowVisible);
+  });
+
+  window.addEventListener('visibility-changed', ((e: CustomEvent) => {
+    if (e.detail?.all) {
+      updateUI(getVisibilityMap()['{id}']);
+    } else if (e.detail?.id === '{id}') {
+      updateUI(e.detail.visible);
+    }
+  }) as EventListener);
+</script>

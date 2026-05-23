@@ -1,0 +1,55 @@
+{
+  "site.name": "Portfolio",
+  "nav.home": "Home",
+  "nav.manage": "Manage sections",
+  "lang.switch": "中文",
+  "lang.label": "EN",
+
+  "hero.greeting": "Hello, I'm",
+  "hero.role": "Developer & Researcher",
+  "hero.cta": "Get in touch",
+
+  "section.about": "About",
+  "section.skills": "Skills",
+  "section.projects": "Projects",
+  "section.blog": "Blog",
+  "section.papers": "Papers",
+
+  "about.title": "About Me",
+  "about.education": "Education",
+  "about.experience": "Experience",
+  "about.present": "Present",
+
+  "skills.title": "Technical Skills",
+  "skills.categories": "Categories",
+
+  "projects.title": "Projects",
+  "projects.view": "View Project",
+  "projects.source": "Source Code",
+
+  "blog.title": "Blog",
+  "blog.all": "All",
+  "blog.readMore": "Read more",
+  "blog.back": "Back to blog",
+  "blog.filterByCategory": "Category",
+  "blog.filterByTag": "Tags",
+  "blog.sortByDate": "Date",
+  "blog.sortNewest": "Newest first",
+  "blog.sortOldest": "Oldest first",
+  "blog.noPosts": "No posts found.",
+  "blog.publishedOn": "Published on",
+
+  "papers.title": "Publications",
+  "papers.authors": "Authors",
+  "papers.venue": "Venue",
+  "papers.year": "Year",
+  "papers.pdf": "PDF",
+  "papers.doi": "DOI",
+
+  "admin.title": "Section Visibility",
+  "admin.showAll": "Show all",
+  "admin.hideAll": "Hide all",
+  "admin.close": "Close",
+
+  "footer.builtWith": "Built with Astro + Tailwind CSS"
+}

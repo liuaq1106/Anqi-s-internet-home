@@ -1,0 +1,74 @@
+[
+  {
+    "title": {
+      "en": "A Novel Approach to Neural Text Generation",
+      "zh": "一种新颖的神经文本生成方法"
+    },
+    "authors": {
+      "en": "Your Name, Collaborator A, Advisor B",
+      "zh": "你的名字, 合作者A, 导师B"
+    },
+    "venue": {
+      "en": "ACL 2025",
+      "zh": "ACL 2025"
+    },
+    "year": 2025,
+    "links": {
+      "pdf": "https://arxiv.org",
+      "doi": "https://doi.org/10.xxxx/example",
+      "code": "https://github.com"
+    },
+    "abstract": {
+      "en": "We propose a novel framework for controllable text generation that combines reinforcement learning with structured constraints.",
+      "zh": "我们提出了一种新颖的可控文本生成框架，结合了强化学习与结构化约束。"
+    }
+  },
+  {
+    "title": {
+      "en": "Efficient Training Methods for Large Language Models",
+      "zh": "大语言模型的高效训练方法"
+    },
+    "authors": {
+      "en": "Collaborator C, Your Name, Researcher D",
+      "zh": "合作者C, 你的名字, 研究员D"
+    },
+    "venue": {
+      "en": "NeurIPS 2024",
+      "zh": "NeurIPS 2024"
+    },
+    "year": 2024,
+    "links": {
+      "pdf": "https://arxiv.org",
+      "doi": "",
+      "code": ""
+    },
+    "abstract": {
+      "en": "We investigate parameter-efficient fine-tuning strategies that reduce computational cost while maintaining model performance.",
+      "zh": "我们研究了参数高效微调策略，在保持模型性能的同时降低计算成本。"
+    }
+  },
+  {
+    "title": {
+      "en": "Understanding Attention Mechanisms in Transformer Models",
+      "zh": "理解 Transformer 模型中的注意力机制"
+    },
+    "authors": {
+      "en": "Your Name, Advisor B",
+      "zh": "你的名字, 导师B"
+    },
+    "venue": {
+      "en": "ICML 2024 Workshop",
+      "zh": "ICML 2024 研讨会"
+    },
+    "year": 2024,
+    "links": {
+      "pdf": "https://arxiv.org",
+      "doi": "",
+      "code": "https://github.com"
+    },
+    "abstract": {
+      "en": "A systematic analysis of attention patterns across different transformer architectures, revealing common structural properties.",
+      "zh": "对不同 Transformer 架构中注意力模式的系统性分析，揭示了共同的结构特性。"
+    }
+  }
+]

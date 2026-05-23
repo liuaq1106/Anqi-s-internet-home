@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Background from '../../components/Background.astro';
+import Skills from '../../components/Skills.astro';
+import Projects from '../../components/Projects.astro';
+import BlogList from '../../components/BlogList.astro';
+import Papers from '../../components/Papers.astro';
+import { getCollection } from 'astro:content';
+
+const lang = 'zh' as const;
+const posts = await getCollection('blog', (entry) => entry.id.startsWith('zh/'));
+---
+
+<BaseLayout {lang}>
+  <Hero {lang} />
+  <Background {lang} />
+  <Skills {lang} />
+  <Projects {lang} />
+  <BlogList {lang} {posts} />
+  <Papers {lang} />
+</BaseLayout>

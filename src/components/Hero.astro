@@ -1,0 +1,129 @@
+---
+import { t, localized } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import profile from '../data/profile.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const hasSocial = Object.values(profile.social).some((v) => v);
+---
+
+<div class="mx-auto max-w-5xl px-6 pt-12 pb-16">
+  <div class="flex flex-col md:flex-row items-start gap-10 md:gap-16">
+    <!-- Avatar -->
+    <div class="shrink-0">
+      <div class="w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden
+                  ring-2 ring-[var(--color-border)] shadow-lg
+                  bg-[var(--color-bg-secondary)]">
+        {profile.avatar ? (
+          <img
+            src={profile.avatar}
+            alt="Avatar"
+            class="w-full h-full object-cover"
+          />
+        ) : (
+          <div class="w-full h-full flex items-center justify-center
+                      text-4xl font-bold text-[var(--color-text-muted)]">
+            {profile.name.charAt(0)}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="flex-1 space-y-5">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight
+                   text-[var(--color-text)] leading-tight">
+          {t('hero.greeting', lang)}{' '}
+          <span class="text-[var(--color-accent)]">{profile.name}</span>
+        </h1>
+        <p class="mt-3 text-lg md:text-xl text-[var(--color-text-secondary)] font-medium">
+          {localized(profile.role, lang)}
+        </p>
+        {profile.location.en && (
+          <p class="mt-1.5 text-sm text-[var(--color-text-muted)] inline-flex items-center gap-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            {localized(profile.location, lang)}
+          </p>
+        )}
+      </div>
+
+      <p class="text-base md:text-lg text-[var(--color-text-secondary)]
+                leading-relaxed max-w-xl">
+        {localized(profile.bio, lang)}
+      </p>
+
+      <!-- Social links -->
+      {hasSocial && (
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          {profile.social.github && (
+            <a href={profile.social.github} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                      bg-[var(--color-bg-secondary)] border border-[var(--color-border)]
+                      text-sm font-medium text-[var(--color-text-secondary)]
+                      hover:text-[var(--color-text)] hover:border-[var(--color-accent)]/30
+                      transition-all duration-200">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              GitHub
+            </a>
+          )}
+          {profile.social.email && (
+            <a href={profile.social.email}
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                      bg-[var(--color-bg-secondary)] border border-[var(--color-border)]
+                      text-sm font-medium text-[var(--color-text-secondary)]
+                      hover:text-[var(--color-text)] hover:border-[var(--color-accent)]/30
+                      transition-all duration-200">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              Email
+            </a>
+          )}
+          {profile.social.linkedin && (
+            <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                      bg-[var(--color-bg-secondary)] border border-[var(--color-border)]
+                      text-sm font-medium text-[var(--color-text-secondary)]
+                      hover:text-[var(--color-text)] hover:border-[var(--color-accent)]/30
+                      transition-all duration-200">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+              </svg>
+              LinkedIn
+            </a>
+          )}
+          {profile.social.twitter && (
+            <a href={profile.social.twitter} target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                      bg-[var(--color-bg-secondary)] border border-[var(--color-border)]
+                      text-sm font-medium text-[var(--color-text-secondary)]
+                      hover:text-[var(--color-text)] hover:border-[var(--color-accent)]/30
+                      transition-all duration-200">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4l6.5 6.5L4 20h2l5.7-6.5L17 20h4l-7-9.5L20 4h-2l-5 6L8 4H4z"/>
+              </svg>
+              Twitter
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</div>

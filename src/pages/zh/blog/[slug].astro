@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { formatDate } from '../../../utils/blog';
+import { t } from '../../../i18n/utils';
+import { homePath } from '../../../utils/paths';
+import type { Locale } from '../../../i18n/utils';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', (entry) => entry.id.startsWith('zh/'));
+  return posts.map((post) => ({
+    params: { slug: post.id.replace('zh/', '').replace('.md', '') },
+  }));
+}
+
+const { slug } = Astro.params;
+const posts = await getCollection('blog', (entry) => entry.id === `zh/${slug}.md`);
+const post = posts[0];
+if (!post) return Astro.redirect(homePath('zh'));
+const { Content } = await post.render();
+const lang: Locale = 'zh';
+const backHref = `${homePath('zh')}#section-blog`;
+---
+
+<BaseLayout lang="zh" title={post.data.title} description={post.data.description}>
+  <article class="mx-auto max-w-3xl px-6 py-8">
+    <a
+      href={backHref}
+      class="inline-flex items-center gap-1.5 text-sm text-[var(--color-text-secondary)]
+             hover:text-[var(--color-text)] transition-colors duration-200 mb-8"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+      </svg>
+      {t('blog.back', lang)}
+    </a>
+
+    <header class="mb-10">
+      <div class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] mb-3">
+        <span class="font-medium text-[var(--color-accent)] uppercase tracking-wider">
+          {post.data.category}
+        </span>
+        <span aria-hidden="true">&middot;</span>
+        <time datetime={post.data.date.toISOString()}>
+          {formatDate(post.data.date, lang)}
+        </time>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-[var(--color-text)]">
+        {post.data.title}
+      </h1>
+      {post.data.tags && post.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          {post.data.tags.map((tag: string) => (
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-medium
+                         bg-[var(--color-bg-secondary)] text-[var(--color-text-muted)]
+                         border border-[var(--color-border)]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose prose-neutral dark:prose-invert max-w-none
+                prose-headings:font-semibold prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+                prose-p:leading-relaxed prose-p:text-[var(--color-text-secondary)]
+                prose-code:text-sm prose-code:bg-[var(--color-bg-secondary)]
+                prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+                prose-pre:bg-[var(--color-bg-secondary)] prose-pre:border
+                prose-pre:border-[var(--color-border)]
+                prose-a:text-[var(--color-accent)]">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

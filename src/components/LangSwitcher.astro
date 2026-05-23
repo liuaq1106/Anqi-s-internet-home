@@ -1,0 +1,37 @@
+---
+import { t } from '../i18n/utils';
+import { homePath } from '../utils/paths';
+import type { Locale } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const otherLang = lang === 'en' ? 'zh' : 'en';
+const label = t('lang.switch', lang);
+
+// Build the target URL preserving the current path across languages
+const currentPath = Astro.url.pathname;
+const baseHref = import.meta.env.BASE_URL || '/';
+// Remove base and locale prefix to get the content path
+const withoutBase = currentPath.replace(new RegExp(`^${baseHref}`), '/');
+const contentPath = withoutBase.replace(/^\/(en|zh)/, '') || '/';
+const href = `${baseHref}${otherLang}${contentPath}`.replace(/\/+/g, '/');
+---
+
+<a
+  href={href}
+  class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium
+         text-[var(--color-text-secondary)] hover:text-[var(--color-text)]
+         rounded-md transition-colors duration-200"
+  aria-label={label}
+>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-70">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </svg>
+  <span>{label}</span>
+</a>

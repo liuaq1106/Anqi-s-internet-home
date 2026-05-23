@@ -1,0 +1,37 @@
+---
+import Section from './Section.astro';
+import { t, localized } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import skills from '../data/skills.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+---
+
+<Section id="skills" {lang} title={t('skills.title', lang)}>
+  <div class="space-y-10">
+    {skills.categories.map((cat) => (
+      <div>
+        <h3 class="text-xs font-semibold tracking-wider uppercase
+                   text-[var(--color-text-muted)] mb-3">
+          {localized(cat.name, lang)}
+        </h3>
+        <div class="flex flex-wrap gap-2">
+          {cat.skills.map((skill) => (
+            <span class="px-3.5 py-2 rounded-lg text-sm font-medium
+                         bg-[var(--color-bg-secondary)] text-[var(--color-text)]
+                         border border-[var(--color-border)]
+                         hover:border-[var(--color-accent)]/30
+                         hover:bg-[var(--color-bg-tertiary)]
+                         transition-all duration-200 cursor-default">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</Section>

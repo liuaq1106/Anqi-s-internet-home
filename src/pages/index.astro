@@ -1,0 +1,8 @@
+---
+import { homePath } from '../utils/paths';
+
+const acceptLang = Astro.request.headers.get('accept-language') || '';
+const prefersChinese = acceptLang.includes('zh');
+
+return Astro.redirect(homePath(prefersChinese ? 'zh' : 'en'));
+---

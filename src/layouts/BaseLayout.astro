@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import AdminDrawer from '../components/AdminDrawer.astro';
+import type { Locale } from '../i18n/utils';
+
+interface Props {
+  lang: Locale;
+  title?: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+const siteTitle = title ? `${title} — Portfolio` : 'Portfolio';
+---
+
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description || 'Personal website'} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{siteTitle}</title>
+</head>
+<body class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300">
+  <script is:inline>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <Navbar {lang} />
+
+  <main class="pt-28 pb-8">
+    <slot />
+  </main>
+
+  <Footer {lang} />
+  <AdminDrawer {lang} />
+</body>
+</html>

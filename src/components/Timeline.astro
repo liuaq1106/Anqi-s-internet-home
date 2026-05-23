@@ -1,0 +1,55 @@
+---
+import { localized } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+
+interface TimelineItem {
+  date: string;
+  title: { en: string; zh: string } | string;
+  subtitle: { en: string; zh: string } | string;
+  description?: { en: string; zh: string } | string;
+}
+
+interface Props {
+  items: TimelineItem[];
+  lang: Locale;
+  presentLabel: string;
+}
+
+const { items, lang, presentLabel } = Astro.props;
+---
+
+<div class="relative">
+  <!-- Vertical line -->
+  <div class="absolute left-[11px] top-2 bottom-2 w-px bg-[var(--color-border)]" aria-hidden="true"></div>
+
+  <div class="space-y-10">
+    {items.map((item) => (
+      <div class="relative pl-10">
+        <!-- Dot -->
+        <div class="absolute left-0 top-1.5 w-[23px] h-[23px] flex items-center justify-center">
+          <div class="w-2.5 h-2.5 rounded-full bg-[var(--color-accent)] ring-4 ring-[var(--color-bg)]"></div>
+        </div>
+
+        <!-- Content -->
+        <div>
+          <span class="inline-block text-xs font-semibold tracking-wider uppercase
+                       text-[var(--color-accent)] bg-[var(--color-bg-secondary)]
+                       px-2.5 py-1 rounded-md mb-2">
+            {item.date.replace('Present', presentLabel)}
+          </span>
+          <h3 class="text-lg font-semibold text-[var(--color-text)]">
+            {localized(item.title, lang)}
+          </h3>
+          <p class="text-sm font-medium text-[var(--color-text-secondary)] mt-0.5">
+            {localized(item.subtitle, lang)}
+          </p>
+          {item.description && (
+            <p class="text-sm text-[var(--color-text-muted)] mt-2 leading-relaxed max-w-xl">
+              {localized(item.description, lang)}
+            </p>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

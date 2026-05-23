@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Personal Website",
+    "description": {
+      "en": "A minimal personal website built with Astro and Tailwind CSS, featuring i18n support, dark mode, and section visibility controls.",
+      "zh": "使用 Astro 和 Tailwind CSS 构建的简约个人网站，支持国际化、暗色模式和区块可见性控制。"
+    },
+    "tech": ["Astro", "Tailwind CSS", "TypeScript"],
+    "links": {
+      "demo": "",
+      "source": "https://github.com"
+    },
+    "image": ""
+  },
+  {
+    "name": "ML Research Toolkit",
+    "description": {
+      "en": "A Python toolkit for machine learning experiments, including data preprocessing, model training, and evaluation utilities.",
+      "zh": "用于机器学习实验的 Python 工具包，包含数据预处理、模型训练和评估工具。"
+    },
+    "tech": ["Python", "PyTorch", "NumPy", "Jupyter"],
+    "links": {
+      "demo": "",
+      "source": "https://github.com"
+    },
+    "image": ""
+  },
+  {
+    "name": "Task Manager API",
+    "description": {
+      "en": "A RESTful API for task management with user authentication, built with Go and PostgreSQL, deployed on Docker.",
+      "zh": "基于 Go 和 PostgreSQL 的任务管理 RESTful API，支持用户认证，Docker 部署。"
+    },
+    "tech": ["Go", "PostgreSQL", "Docker", "REST"],
+    "links": {
+      "demo": "",
+      "source": "https://github.com"
+    },
+    "image": ""
+  },
+  {
+    "name": "Blog Platform",
+    "description": {
+      "en": "A full-stack blog platform with markdown editor, tag system, and comment functionality.",
+      "zh": "全栈博客平台，支持 Markdown 编辑器、标签系统和评论功能。"
+    },
+    "tech": ["React", "Node.js", "PostgreSQL", "Markdown"],
+    "links": {
+      "demo": "https://example.com",
+      "source": "https://github.com"
+    },
+    "image": ""
+  }
+]

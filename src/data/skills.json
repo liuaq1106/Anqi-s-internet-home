@@ -1,0 +1,39 @@
+{
+  "categories": [
+    {
+      "name": {
+        "en": "Languages",
+        "zh": "编程语言"
+      },
+      "skills": ["JavaScript", "TypeScript", "Python", "Go", "SQL", "C++"]
+    },
+    {
+      "name": {
+        "en": "Frontend",
+        "zh": "前端"
+      },
+      "skills": ["React", "Vue", "Next.js", "Tailwind CSS", "Astro", "HTML/CSS"]
+    },
+    {
+      "name": {
+        "en": "Backend & DevOps",
+        "zh": "后端 & 运维"
+      },
+      "skills": ["Node.js", "PostgreSQL", "Docker", "Redis", "Linux", "REST APIs"]
+    },
+    {
+      "name": {
+        "en": "AI & Data",
+        "zh": "AI & 数据"
+      },
+      "skills": ["PyTorch", "NLP", "Deep Learning", "Pandas", "Jupyter", "Scikit-learn"]
+    },
+    {
+      "name": {
+        "en": "Tools",
+        "zh": "工具"
+      },
+      "skills": ["Git", "VS Code", "Figma", "Notion", "GitHub Actions", "Vim"]
+    }
+  ]
+}
