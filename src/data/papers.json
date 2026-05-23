@@ -13,6 +13,8 @@
       "zh": "ACL 2025"
     },
     "year": 2025,
+    "image": "",
+    "semanticScholarId": "",
     "links": {
       "pdf": "https://arxiv.org",
       "doi": "https://doi.org/10.xxxx/example",
@@ -37,6 +39,8 @@
       "zh": "NeurIPS 2024"
     },
     "year": 2024,
+    "image": "",
+    "semanticScholarId": "",
     "links": {
       "pdf": "https://arxiv.org",
       "doi": "",
@@ -61,6 +65,8 @@
       "zh": "ICML 2024 研讨会"
     },
     "year": 2024,
+    "image": "",
+    "semanticScholarId": "",
     "links": {
       "pdf": "https://arxiv.org",
       "doi": "",

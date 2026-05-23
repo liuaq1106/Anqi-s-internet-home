@@ -45,6 +45,8 @@
   "papers.year": "年份",
   "papers.pdf": "PDF",
   "papers.doi": "DOI",
+  "papers.citations": "次引用",
+  "papers.citedBy": "被引用",
 
   "admin.title": "区块显示管理",
   "admin.showAll": "全部显示",

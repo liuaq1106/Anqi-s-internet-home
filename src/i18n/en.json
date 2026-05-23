@@ -45,6 +45,8 @@
   "papers.year": "Year",
   "papers.pdf": "PDF",
   "papers.doi": "DOI",
+  "papers.citations": "citations",
+  "papers.citedBy": "Cited by",
 
   "admin.title": "Section Visibility",
   "admin.showAll": "Show all",
