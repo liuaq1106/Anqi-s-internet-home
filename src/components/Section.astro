@@ -20,7 +20,6 @@ const displayTitle = title || t(sectionKey, lang);
   data-section={id}
 >
   <div class="section-inner opacity-0 translate-y-6 transition-[opacity,transform] duration-700 ease-out">
-    <!-- Section header with title and eye toggle -->
     <div class="flex items-center gap-3 mb-10">
       <h2 class="text-2xl font-bold tracking-tight text-[var(--color-text)]">
         {displayTitle}
@@ -52,7 +51,6 @@ const displayTitle = title || t(sectionKey, lang);
       </button>
     </div>
 
-    <!-- Content area -->
     <div class="section-content">
       <slot />
     </div>
@@ -76,11 +74,11 @@ const displayTitle = title || t(sectionKey, lang);
   }
 </style>
 
-<script>
+<script define:vars={{ id }}>
   import { getVisibilityMap, toggleSection } from '../utils/visibility';
 
-  const section = document.querySelector('[data-section="{id}"]') as HTMLElement | null;
-  if (!section) throw new Error(`Section not found: {id}`);
+  const section = document.querySelector(`[data-section="${id}"]`) as HTMLElement | null;
+  if (!section) throw new Error(`Section not found: ${id}`);
 
   const inner = section.querySelector('.section-inner') as HTMLElement;
   const content = section.querySelector('.section-content') as HTMLElement;
@@ -114,18 +112,18 @@ const displayTitle = title || t(sectionKey, lang);
     }
   }
 
-  const visible = getVisibilityMap()['{id}'];
+  const visible = getVisibilityMap()[id];
   updateUI(visible);
 
   toggleBtn?.addEventListener('click', () => {
-    const nowVisible = toggleSection('{id}');
+    const nowVisible = toggleSection(id);
     updateUI(nowVisible);
   });
 
   window.addEventListener('visibility-changed', ((e: CustomEvent) => {
     if (e.detail?.all) {
-      updateUI(getVisibilityMap()['{id}']);
-    } else if (e.detail?.id === '{id}') {
+      updateUI(getVisibilityMap()[id]);
+    } else if (e.detail?.id === id) {
       updateUI(e.detail.visible);
     }
   }) as EventListener);
