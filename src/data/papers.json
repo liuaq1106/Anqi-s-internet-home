@@ -5,19 +5,19 @@
       "zh": ""
     },
     "authors": {
-      "en": "",
+      "en": "Anqi Liu, Wenxiao Shi, Min Ouyang, Wei Liu",
       "zh": ""
     },
     "venue": {
-      "en": "",
-      "zh": ""
+      "en": "Journal of Lightwave Technology",
+      "zh": "Journal of Lightwave Technology"
     },
-    "year": 0,
+    "year": 2022,
     "image": "",
     "semanticScholarId": "",
     "links": {
       "pdf": "/papers/Characterization_of_Optical_Camera_Communication_Based_on_a_Comprehensive_System_Model.pdf",
-      "doi": "",
+      "doi": "https://doi.org/10.1109/jlt.2022.3187500",
       "code": ""
     },
     "abstract": {
@@ -31,71 +31,71 @@
       "zh": ""
     },
     "authors": {
-      "en": "",
+      "en": "Anqi Liu, Wenxiao Shi, Majid Safari, Wei Liu, Jingtai Cao",
       "zh": ""
     },
     "venue": {
-      "en": "",
-      "zh": ""
-    },
-    "year": 0,
-    "image": "",
-    "semanticScholarId": "",
-    "links": {
-      "pdf": "/papers/Design_Guidelines_for_Optical_Camera_Communication_Systems_A_Tutorial.pdf",
-      "doi": "",
-      "code": ""
-    },
-    "abstract": {
-      "en": "",
-      "zh": ""
-    }
-  },
-  {
-    "title": {
-      "en": "Liuaq OL GL",
-      "zh": ""
-    },
-    "authors": {
-      "en": "Liuaq",
-      "zh": ""
-    },
-    "venue": {
-      "en": "",
-      "zh": ""
-    },
-    "year": 0,
-    "image": "",
-    "semanticScholarId": "",
-    "links": {
-      "pdf": "/papers/Liuaq_OL_GL.pdf",
-      "doi": "",
-      "code": ""
-    },
-    "abstract": {
-      "en": "",
-      "zh": ""
-    }
-  },
-  {
-    "title": {
-      "en": "oe-32-11-19697",
-      "zh": ""
-    },
-    "authors": {
-      "en": "",
-      "zh": ""
-    },
-    "venue": {
-      "en": "Optics Express",
-      "zh": "Optics Express"
+      "en": "IEEE Photonics Journal",
+      "zh": "IEEE Photonics Journal"
     },
     "year": 2024,
     "image": "",
     "semanticScholarId": "",
     "links": {
+      "pdf": "/papers/Design_Guidelines_for_Optical_Camera_Communication_Systems_A_Tutorial.pdf",
+      "doi": "https://doi.org/10.1109/jphot.2024.3424885",
+      "code": ""
+    },
+    "abstract": {
+      "en": "",
+      "zh": ""
+    }
+  },
+  {
+    "title": {
+      "en": "GL(n) × GL(n) × … × GL(n) Examples",
+      "zh": ""
+    },
+    "authors": {
+      "en": "Nicholas M. Katz",
+      "zh": ""
+    },
+    "venue": {
+      "en": "Convolution and Equidistribution",
+      "zh": "Convolution and Equidistribution"
+    },
+    "year": 2017,
+    "image": "",
+    "semanticScholarId": "",
+    "links": {
+      "pdf": "/papers/Liuaq_OL_GL.pdf",
+      "doi": "https://doi.org/10.23943/princeton/9780691153308.003.0021",
+      "code": ""
+    },
+    "abstract": {
+      "en": "<p>This chapter investigates the question which begings as follows. Suppose we have a geometrically irreducible middle extension sheaf <italic>G</italic> on 𝔾ₘ/<italic>k</italic> which is pure of weight zero, such that the object <italic>N</italic> := <italic>G</italic>(1/2)[1] ɛ G<sub>arith</sub> is “dimension” <italic>n</italic> and has <italic>G</italic>subscript <italic>geom,N</italic> = G<sub>arith,N</sub> = <italic>GL</italic>(<italic>n</italic>). Suppose in addition we are given <italic>s</italic> ≤ 2 distinct characters χ‎ᵢ of <italic>k</italic>ˣ.</p>",
+      "zh": ""
+    }
+  },
+  {
+    "title": {
+      "en": "Front cover",
+      "zh": ""
+    },
+    "authors": {
+      "en": "",
+      "zh": ""
+    },
+    "venue": {
+      "en": "Physical Chemistry Chemical Physics",
+      "zh": "Physical Chemistry Chemical Physics"
+    },
+    "year": 2019,
+    "image": "",
+    "semanticScholarId": "",
+    "links": {
       "pdf": "/papers/oe-32-11-19697.pdf",
-      "doi": "https://doi.org/10.1364/OE.32.019697",
+      "doi": "https://doi.org/10.1039/c9cp90227a",
       "code": ""
     },
     "abstract": {
