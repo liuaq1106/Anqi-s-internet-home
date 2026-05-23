@@ -32,6 +32,31 @@ const siteTitle = title ? `${title} — Portfolio` : 'Portfolio';
         document.documentElement.classList.add('dark');
       }
     })();
+
+    // Global visibility functions (used by Section components)
+    const SECTION_IDS = ['about','skills','projects','blog','papers'];
+    const STORAGE_KEY = 'section-visibility';
+    window.__getVisibilityMap = function() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const map = {};
+          for (const id of SECTION_IDS) map[id] = parsed[id] ?? true;
+          return map;
+        }
+      } catch(e) {}
+      const map = {};
+      for (const id of SECTION_IDS) map[id] = true;
+      return map;
+    };
+    window.__toggleSection = function(id) {
+      const map = window.__getVisibilityMap();
+      map[id] = !map[id];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+      window.dispatchEvent(new CustomEvent('visibility-changed', { detail: { id, visible: map[id] } }));
+      return map[id];
+    };
   </script>
 
   <Navbar {lang} />

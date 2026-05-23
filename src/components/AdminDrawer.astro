@@ -95,67 +95,110 @@ const sectionLabels: Record<SectionId, string> = {
 </aside>
 
 <script>
-  import { getVisibilityMap, setVisibility, showAll, hideAll } from '../utils/visibility';
+  (function() {
+    var SECTION_IDS = ['about','skills','projects','blog','papers'];
+    var STORAGE_KEY = 'section-visibility';
 
-  const overlay = document.getElementById('admin-overlay')!;
-  const drawer = document.getElementById('admin-drawer')!;
-  const openBtn = document.getElementById('admin-btn');
-  const closeBtn = document.getElementById('admin-close');
-  const showAllBtn = document.getElementById('admin-show-all');
-  const hideAllBtn = document.getElementById('admin-hide-all');
-  const checkboxes = drawer.querySelectorAll<HTMLInputElement>('.admin-checkbox');
+    function getVisibilityMap() {
+      try {
+        var saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          var parsed = JSON.parse(saved);
+          var map = {};
+          for (var _i = 0; _i < SECTION_IDS.length; _i++) {
+            map[SECTION_IDS[_i]] = parsed[SECTION_IDS[_i]] ?? true;
+          }
+          return map;
+        }
+      } catch(e) {}
+      var map = {};
+      for (var _j = 0; _j < SECTION_IDS.length; _j++) {
+        map[SECTION_IDS[_j]] = true;
+      }
+      return map;
+    }
 
-  function open() {
-    overlay.classList.remove('opacity-0', 'pointer-events-none');
-    drawer.classList.remove('translate-x-full');
-    // Sync checkboxes with current state
-    const map = getVisibilityMap();
-    checkboxes.forEach((cb) => {
-      cb.checked = map[cb.dataset.sectionId as string] ?? true;
-    });
-  }
+    function setVisibility(id, visible) {
+      var map = getVisibilityMap();
+      map[id] = visible;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+      window.dispatchEvent(new CustomEvent('visibility-changed', { detail: { id: id, visible: visible } }));
+    }
 
-  function close() {
-    overlay.classList.add('opacity-0', 'pointer-events-none');
-    drawer.classList.add('translate-x-full');
-  }
+    function showAll() {
+      var map = getVisibilityMap();
+      for (var _k = 0; _k < SECTION_IDS.length; _k++) {
+        map[SECTION_IDS[_k]] = true;
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+      window.dispatchEvent(new CustomEvent('visibility-changed', { detail: { all: true } }));
+    }
 
-  openBtn?.addEventListener('click', open);
-  closeBtn?.addEventListener('click', close);
-  overlay?.addEventListener('click', close);
+    function hideAll() {
+      var map = getVisibilityMap();
+      for (var _l = 0; _l < SECTION_IDS.length; _l++) {
+        map[SECTION_IDS[_l]] = false;
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+      window.dispatchEvent(new CustomEvent('visibility-changed', { detail: { all: true } }));
+    }
 
-  // Toggle individual section
-  checkboxes.forEach((cb) => {
-    cb.addEventListener('change', () => {
-      const id = cb.dataset.sectionId;
-      if (id) setVisibility(id as import('../utils/visibility').SectionId, cb.checked);
-    });
-  });
+    var overlay = document.getElementById('admin-overlay');
+    var drawer = document.getElementById('admin-drawer');
+    var openBtn = document.getElementById('admin-btn');
+    var closeBtn = document.getElementById('admin-close');
+    var showAllBtn = document.getElementById('admin-show-all');
+    var hideAllBtn = document.getElementById('admin-hide-all');
+    var checkboxes = drawer.querySelectorAll('.admin-checkbox');
 
-  showAllBtn?.addEventListener('click', () => {
-    showAll();
-    checkboxes.forEach((cb) => { cb.checked = true; });
-  });
-
-  hideAllBtn?.addEventListener('click', () => {
-    hideAll();
-    checkboxes.forEach((cb) => { cb.checked = false; });
-  });
-
-  // Sync checkboxes when visibility changes externally
-  window.addEventListener('visibility-changed', ((e: CustomEvent) => {
-    if (e.detail?.all) {
-      const map = getVisibilityMap();
-      checkboxes.forEach((cb) => {
-        cb.checked = map[cb.dataset.sectionId as string] ?? true;
+    function open() {
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+      drawer.classList.remove('translate-x-full');
+      var map = getVisibilityMap();
+      checkboxes.forEach(function(cb) {
+        cb.checked = map[cb.dataset.sectionId] ?? true;
       });
     }
-  }) as EventListener);
 
-  // Close on Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !drawer.classList.contains('translate-x-full')) {
-      close();
+    function close() {
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+      drawer.classList.add('translate-x-full');
     }
-  });
+
+    openBtn && openBtn.addEventListener('click', open);
+    closeBtn && closeBtn.addEventListener('click', close);
+    overlay && overlay.addEventListener('click', close);
+
+    checkboxes.forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        var id = cb.dataset.sectionId;
+        if (id) setVisibility(id, cb.checked);
+      });
+    });
+
+    showAllBtn && showAllBtn.addEventListener('click', function() {
+      showAll();
+      checkboxes.forEach(function(cb) { cb.checked = true; });
+    });
+
+    hideAllBtn && hideAllBtn.addEventListener('click', function() {
+      hideAll();
+      checkboxes.forEach(function(cb) { cb.checked = false; });
+    });
+
+    window.addEventListener('visibility-changed', function(e) {
+      if (e.detail && e.detail.all) {
+        var map = getVisibilityMap();
+        checkboxes.forEach(function(cb) {
+          cb.checked = map[cb.dataset.sectionId] ?? true;
+        });
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !drawer.classList.contains('translate-x-full')) {
+        close();
+      }
+    });
+  })();
 </script>

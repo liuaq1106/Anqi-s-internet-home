@@ -75,56 +75,59 @@ const displayTitle = title || t(sectionKey, lang);
 </style>
 
 <script define:vars={{ id }}>
-  import { getVisibilityMap, toggleSection } from '../utils/visibility';
+  (function() {
+    var getVisibilityMap = window.__getVisibilityMap;
+    var toggleSection = window.__toggleSection;
 
-  const section = document.querySelector(`[data-section="${id}"]`) as HTMLElement | null;
-  if (!section) throw new Error(`Section not found: ${id}`);
+    var section = document.querySelector('[data-section="' + id + '"]');
+    if (!section) return;
 
-  const inner = section.querySelector('.section-inner') as HTMLElement;
-  const content = section.querySelector('.section-content') as HTMLElement;
-  const toggleBtn = section.querySelector('.section-toggle') as HTMLButtonElement;
-  const eyeOpen = section.querySelector('.eye-open') as HTMLElement;
-  const eyeClosed = section.querySelector('.eye-closed') as HTMLElement;
+    var inner = section.querySelector('.section-inner');
+    var content = section.querySelector('.section-content');
+    var toggleBtn = section.querySelector('.section-toggle');
+    var eyeOpen = section.querySelector('.eye-open');
+    var eyeClosed = section.querySelector('.eye-closed');
 
-  // Scroll fade-in
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          inner.classList.add('visible');
-          observer.unobserve(inner);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  );
-  observer.observe(inner);
+    // Scroll fade-in
+    var observer = new IntersectionObserver(
+      function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            inner.classList.add('visible');
+            observer.unobserve(inner);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    observer.observe(inner);
 
-  function updateUI(visible: boolean) {
-    if (visible) {
-      content.classList.remove('hidden');
-      eyeOpen?.classList.remove('hidden');
-      eyeClosed?.classList.add('hidden');
-    } else {
-      content.classList.add('hidden');
-      eyeOpen?.classList.add('hidden');
-      eyeClosed?.classList.remove('hidden');
+    function updateUI(visible) {
+      if (visible) {
+        content.classList.remove('hidden');
+        eyeOpen && eyeOpen.classList.remove('hidden');
+        eyeClosed && eyeClosed.classList.add('hidden');
+      } else {
+        content.classList.add('hidden');
+        eyeOpen && eyeOpen.classList.add('hidden');
+        eyeClosed && eyeClosed.classList.remove('hidden');
+      }
     }
-  }
 
-  const visible = getVisibilityMap()[id];
-  updateUI(visible);
+    var visible = getVisibilityMap()[id];
+    updateUI(visible);
 
-  toggleBtn?.addEventListener('click', () => {
-    const nowVisible = toggleSection(id);
-    updateUI(nowVisible);
-  });
+    toggleBtn && toggleBtn.addEventListener('click', function() {
+      var nowVisible = toggleSection(id);
+      updateUI(nowVisible);
+    });
 
-  window.addEventListener('visibility-changed', ((e: CustomEvent) => {
-    if (e.detail?.all) {
-      updateUI(getVisibilityMap()[id]);
-    } else if (e.detail?.id === id) {
-      updateUI(e.detail.visible);
-    }
-  }) as EventListener);
+    window.addEventListener('visibility-changed', function(e) {
+      if (e.detail && e.detail.all) {
+        updateUI(getVisibilityMap()[id]);
+      } else if (e.detail && e.detail.id === id) {
+        updateUI(e.detail.visible);
+      }
+    });
+  })();
 </script>
